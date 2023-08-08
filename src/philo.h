@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2023/08/08 15:17:31 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/08 16:25:08 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@
 # define PHILO_MAX 300
 
 int	ft_atoi(char *str);
+int	check_valid_args(char **argv);
+int	check_arg_content(char *arg);
 
 #endif
