@@ -6,12 +6,24 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:05:40 by druina            #+#    #+#             */
-/*   Updated: 2023/08/09 12:06:11 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/09 12:30:41 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void init_mutex (pthread_mutex_t *forks, pthread_mutex_t dead_lock, int philo_num)
+{
+  int i;
+
+  i = 0;
+  while (i < philo_num)
+  {
+    pthread_mutex_init(&forks[i], NULL);
+    i++;
+  }
+  pthread_mutex_init(&dead_lock, NULL);
+}
 
 void	init_input(t_input *input, char **argv)
 {

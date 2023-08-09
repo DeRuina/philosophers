@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:23:28 by druina            #+#    #+#             */
-/*   Updated: 2023/08/09 12:29:43 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/09 12:30:36 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,6 @@ int	check_valid_args(char **argv)
 		return (write(2, "Invalid number of times each philosopher must eat\n",
 				51), 1);
 	return (0);
-}
-
-void init_mutex (pthread_mutex_t *forks, pthread_mutex_t dead_lock, int philo_num)
-{
-  int i;
-
-  i = 0;
-  while (i < philo_num)
-  {
-    pthread_mutex_init(&forks[i], NULL);
-    i++;
-  }
-  pthread_mutex_init(&dead_lock, NULL);
 }
 
 int	main(int argc, char **argv)
