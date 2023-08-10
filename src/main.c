@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:23:28 by druina            #+#    #+#             */
-/*   Updated: 2023/08/09 12:30:36 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/10 10:45:12 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,17 @@ int	check_valid_args(char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_input program_input;
+	t_program program;
   t_philo philos[PHILO_MAX];
   pthread_mutex_t forks[PHILO_MAX];
-  pthread_mutex_t dead_lock;
-
-
+ 
 	if (argc != 5 && argc != 6)
 		return (write(2, "Wrong argument count\n", 22), 1);
 	if (check_valid_args(argv) == 1)
 		return (1);
-  init_input(&program_input, argv);
-  init_mutex(forks, dead_lock, program_input.num_of_philos);
+  init_program(&program, argv);
+  init_forks(forks, program.num_of_philos);
+  init_philos(philos, &program, forks);
 
 	return (0);
 }
