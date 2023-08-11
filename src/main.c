@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:23:28 by druina            #+#    #+#             */
-/*   Updated: 2023/08/11 13:41:17 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/11 13:43:44 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	main(int argc, char **argv)
 	init_forks(forks, program.num_of_philos);
 	init_philos(philos, &program, forks);
 	thread_create(philos, forks);
+  destory_all(NULL, philos, forks);
 
 	return (0);
 }
