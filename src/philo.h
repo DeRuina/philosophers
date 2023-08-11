@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2023/08/11 15:46:55 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/11 22:24:06 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,13 @@ void				init_philos(t_philo *philos, t_program *program,
 int					ft_usleep(size_t microseconds);
 int					ft_strlen(char *str);
 void				*philo_routine(void *pointer);
+void				*monitor(void *pointer);
 void				destory_all(char *str, t_program *program,
 						pthread_mutex_t *forks);
 int					philosopher_dead(t_philo *philo, size_t time_to_die);
 int					thread_create(t_program *program, pthread_mutex_t *forks);
-void				print_messages(char *str, t_program *program, int id);
+void				print_message(char *str, t_program *program, int id);
+int					check_if_dead(t_program *program);
+int					check_if_all_ate(t_program *program);
+
 #endif
