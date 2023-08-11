@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2023/08/10 10:46:46 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/11 12:46:19 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_program
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	int				num_times_to_eat;
+	int				finished_eating;
 	pthread_mutex_t	write;
 	pthread_mutex_t	lock;
 
@@ -40,7 +41,7 @@ typedef struct s_philo
 	int				dead;
 	int				eating;
 	int				meals_eaten;
-	size_t				last_meal;
+	size_t			last_meal;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	lock;
@@ -56,5 +57,7 @@ void				init_program(t_program *program, char **argv);
 void				init_forks(pthread_mutex_t *forks, int philo_num);
 void				init_philos(t_philo *philos, t_program *program,
 						pthread_mutex_t *forks);
+int					ft_usleep(size_t microseconds);
+int					ft_strlen(char *str);
 
 #endif

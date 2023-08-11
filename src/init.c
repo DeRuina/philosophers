@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:05:40 by druina            #+#    #+#             */
-/*   Updated: 2023/08/10 10:45:23 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/11 11:37:01 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	init_program(t_program *program, char **argv)
 		program->num_times_to_eat = ft_atoi(argv[5]);
 	else
 		program->num_times_to_eat = -1;
+  program->finished_eating = 0;
 	pthread_mutex_init(&program->lock, NULL);
 	pthread_mutex_init(&program->write, NULL);
 }

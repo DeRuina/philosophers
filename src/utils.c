@@ -12,6 +12,18 @@
 
 #include "philo.h"
 
+int ft_strlen(char *str)
+{
+  int i;
+
+  if (str == NULL)
+    return (0);
+  i = 0;
+  while (str[i] != '\0')
+    i++;
+  return (i);
+}
+
 int	ft_atoi(char *str)
 {
 	unsigned long long	nb;
@@ -34,6 +46,16 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (sign * nb);
+}
+
+int	ft_usleep(size_t microseconds)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < microseconds)
+		usleep(500);
+	return (0);
 }
 
 size_t	get_current_time(void)
