@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:23:28 by druina            #+#    #+#             */
-/*   Updated: 2023/08/11 13:43:44 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/11 15:12:28 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,56 +42,6 @@ int	check_valid_args(char **argv)
 				51), 1);
 	return (0);
 }
-void	destory_all(char *str, t_philo *philos, pthread_mutex_t *forks)
-{
-	int	i;
-
-	i = 0;
-	if (str)
-	{
-		write(2, str, ft_strlen(str));
-		write(2, "\n", 1);
-	}
-	pthread_mutex_destroy(&philos[0].program->lock);
-	pthread_mutex_destroy(&philos[0].program->write);
-	while (i < philos->program->num_of_philos)
-	{
-		pthread_mutex_destroy(&philos[i].lock);
-		pthread_mutex_destroy(&forks[i]);
-		i++;
-	}
-}
-
-void	*philo_routine(void *pointer)
-{
-	t_philo	*philo;
-
-	philo = (t_philo *)pointer;
-	
-	return (philo);
-}
-
-int	thread_create(t_philo *philos, pthread_mutex_t *forks)
-{
-	int	i;
-
-	i = 0;
-	while (i < philos[0].program->num_of_philos)
-	{
-		if (pthread_create(&philos[i].thread, NULL, &philo_routine,
-				&philos[i]) != 0)
-			destory_all("Thread creation error", philos, forks);
-		i++;
-	}
-	i = 0;
-	while (i < philos[0].program->num_of_philos)
-	{
-		if (pthread_join(philos[i].thread, NULL) != 0)
-			destory_all("Thread join error", philos, forks);
-		i++;
-	}
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {
@@ -103,11 +53,11 @@ int	main(int argc, char **argv)
 		return (write(2, "Wrong argument count\n", 22), 1);
 	if (check_valid_args(argv) == 1)
 		return (1);
-	init_program(&program, argv);
+	init_program(&program, philos, argv);
 	init_forks(forks, program.num_of_philos);
 	init_philos(philos, &program, forks);
-	thread_create(philos, forks);
-  destory_all(NULL, philos, forks);
+	thread_create(&program, forks);
+  destory_all(NULL, &program, forks);
 
 	return (0);
 }

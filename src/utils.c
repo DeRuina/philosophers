@@ -12,16 +12,16 @@
 
 #include "philo.h"
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-  int i;
+	int	i;
 
-  if (str == NULL)
-    return (0);
-  i = 0;
-  while (str[i] != '\0')
-    i++;
-  return (i);
+	if (str == NULL)
+		return (0);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 
 int	ft_atoi(char *str)
@@ -48,6 +48,26 @@ int	ft_atoi(char *str)
 	return (sign * nb);
 }
 
+void	destory_all(char *str, t_program *program, pthread_mutex_t *forks)
+{
+	int	i;
+
+	i = 0;
+	if (str)
+	{
+		write(2, str, ft_strlen(str));
+		write(2, "\n", 1);
+	}
+	pthread_mutex_destroy(&program->lock);
+	pthread_mutex_destroy(&program->write);
+	while (i < program->num_of_philos)
+	{
+		pthread_mutex_destroy(&program->philos[i].lock);
+		pthread_mutex_destroy(&forks[i]);
+		i++;
+	}
+}
+
 int	ft_usleep(size_t microseconds)
 {
 	size_t	start;
@@ -63,6 +83,6 @@ size_t	get_current_time(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-    write(2, "gettimeofday() error\n", 22);
+		write(2, "gettimeofday() error\n", 22);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
