@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2023/08/11 15:13:26 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/11 15:46:55 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ void				destory_all(char *str, t_program *program,
 						pthread_mutex_t *forks);
 int					philosopher_dead(t_philo *philo, size_t time_to_die);
 int					thread_create(t_program *program, pthread_mutex_t *forks);
+void				print_messages(char *str, t_program *program, int id);
 #endif
