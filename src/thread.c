@@ -6,20 +6,42 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:01:57 by druina            #+#    #+#             */
-/*   Updated: 2023/08/11 22:24:20 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/13 23:06:40 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void think (t_philo *philo)
+{
+
+}
+
+void dream(t_philo *philo)
+{
+
+}
+
+void eat(t_philo *philo)
+{
+
+
+}
+
+void actions(t_philo *philo)
+{
+  eat(philo);
+  dream(philo);
+  think(philo);
+}
+
 void	*philo_routine(void *pointer)
 {
-	t_program	*program;
+	t_philo *philo;
 
-	program = (t_program *)pointer;
-	while (program->dead == 0)
-	{
-	}
+	philo = (t_philo *)pointer;
+	while (philo->dead == 0)
+    actions(philo);
 	return (pointer);
 }
 
