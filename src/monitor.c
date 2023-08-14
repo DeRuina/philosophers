@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:22:47 by druina            #+#    #+#             */
-/*   Updated: 2023/08/14 10:31:27 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/14 10:47:19 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ int	check_if_dead(t_program *program)
 int	check_if_all_ate(t_program *program)
 {
 	int	i;
-	// int finished_eating;
+	int finished_eating;
 
 	i = 0;
+	finished_eating = 0;
 	if (program->num_times_to_eat == -1)
 		return (0);
 	while (i < program->num_of_philos)
@@ -67,11 +68,11 @@ int	check_if_all_ate(t_program *program)
 		// pthread_mutex_unlock(&program->philos[i].lock);
 		i++;
 	}
-	// if (finished_eating == program->num_of_philos)
-	// {
-	// 	// program->dead = 1;
-	// 	return (1);
-	// }
+	if (finished_eating == program->num_of_philos)
+	{
+		program->dead = 1;
+		return (1);
+	}
 	return (0);
 }
 

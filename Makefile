@@ -6,7 +6,7 @@
 #    By: druina <druina@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 14:19:21 by druina            #+#    #+#              #
-#    Updated: 2023/08/14 10:12:21 by druina           ###   ########.fr        #
+#    Updated: 2023/08/14 10:39:17 by druina           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,14 @@ FLAGS = -Wall -Wextra -Werror
 
 HEADER = ./src/philo.h
 
+SANITIZER = -fsanitize=address
+
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
 $(NAME): $(MANPATH) $(HEADER)
-	@cc $(FLAGS) -o $(NAME) $(MANPATH) -pthread -fsanitize=address
+	@cc $(FLAGS) -o $(NAME) $(MANPATH) -pthread $(SANITIZER)
 
 clean:
 	@rm -f $(NAME)

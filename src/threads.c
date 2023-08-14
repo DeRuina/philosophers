@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:01:57 by druina            #+#    #+#             */
-/*   Updated: 2023/08/14 10:11:37 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/14 10:44:51 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ int	thread_create(t_program *program, pthread_mutex_t *forks)
 		i++;
 	}
 	i = 0;
+	if (pthread_join(observer, NULL) != 0)
+		destory_all("Thread join error", program, forks);
 	while (i < program->num_of_philos)
 	{
 		if (pthread_join(program->philos[i].thread, NULL) != 0)
 			destory_all("Thread join error", program, forks);
 		i++;
 	}
-	if (pthread_join(observer, NULL) != 0)
-		destory_all("Thread join error", program, forks);
 	return (0);
 }
