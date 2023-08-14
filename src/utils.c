@@ -62,7 +62,7 @@ void	destory_all(char *str, t_program *program, pthread_mutex_t *forks)
 	pthread_mutex_destroy(&program->write);
 	while (i < program->num_of_philos)
 	{
-		pthread_mutex_destroy(&program->philos[i].lock);
+		// pthread_mutex_destroy(&program->philos[i].lock);
 		pthread_mutex_destroy(&forks[i]);
 		i++;
 	}
