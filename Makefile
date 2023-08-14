@@ -6,13 +6,13 @@
 #    By: druina <druina@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 14:19:21 by druina            #+#    #+#              #
-#    Updated: 2023/08/11 22:52:37 by druina           ###   ########.fr        #
+#    Updated: 2023/08/14 09:51:55 by druina           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRC = main.c utils.c init.c thread.c monitor.c
+SRC = main.c utils.c init.c threads.c monitor.c
 
 MANPATH = $(addprefix ./src/, $(SRC))
 

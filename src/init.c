@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:05:40 by druina            #+#    #+#             */
-/*   Updated: 2023/08/13 23:02:07 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/14 09:35:41 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks)
     philos[i].write = &program->write;
 		philos[i].l_fork = &forks[i];
     philos[i].dead = &program->dead;
+		philos[i].start_time = program->start_time;
 		if (i == 0)
 			philos[i].r_fork = &forks[program->num_of_philos - 1];
 		else

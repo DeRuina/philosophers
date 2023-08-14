@@ -6,20 +6,20 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:22:47 by druina            #+#    #+#             */
-/*   Updated: 2023/08/13 22:53:41 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/14 09:37:54 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_message(char *str, t_program *program, int id)
+void	print_message(char *str, t_philo *philo, int id)
 {
 	size_t	time;
 
-	pthread_mutex_lock(&program->write);
-	time = get_current_time() - program->start_time;
+	pthread_mutex_lock(philo->write);
+	time = get_current_time() - philo->start_time;
 	printf("%zu %d %s\n", time, id, str);
-	pthread_mutex_unlock(&program->write);
+	pthread_mutex_unlock(philo->write);
 }
 
 int	philosopher_dead(t_philo *philo, size_t time_to_die)
@@ -42,7 +42,7 @@ int	check_if_dead(t_program *program)
 		{
 			program->dead = 1;
 			pthread_mutex_unlock(&program->philos[i].lock);
-			print_message("died", program, program->philos[i].id);
+			print_message("died", &program->philos[i], program->philos[i].id);
 			return (1);
 		}
 		pthread_mutex_unlock(&program->philos[i].lock);
