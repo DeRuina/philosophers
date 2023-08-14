@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread.c                                           :+:      :+:    :+:   */
+/*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:01:57 by druina            #+#    #+#             */
-/*   Updated: 2023/08/14 09:51:04 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/14 10:11:37 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	*philo_routine(void *pointer)
 	t_philo *philo;
 
 	philo = (t_philo *)pointer;
-	while (philo->dead == 0)
+	while (*philo->dead == 0)
   {
     eat(philo);
     dream(philo);

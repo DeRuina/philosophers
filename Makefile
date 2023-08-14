@@ -6,7 +6,7 @@
 #    By: druina <druina@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 14:19:21 by druina            #+#    #+#              #
-#    Updated: 2023/08/14 09:51:55 by druina           ###   ########.fr        #
+#    Updated: 2023/08/14 10:12:21 by druina           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ HEADER = ./src/philo.h
 all: $(NAME)
 
 $(NAME): $(MANPATH) $(HEADER)
-	@cc $(FLAGS) -o $(NAME) $(MANPATH) -pthread
+	@cc $(FLAGS) -o $(NAME) $(MANPATH) -pthread -fsanitize=address
 
 clean:
 	@rm -f $(NAME)
