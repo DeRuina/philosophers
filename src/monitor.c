@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:22:47 by druina            #+#    #+#             */
-/*   Updated: 2023/08/15 10:26:01 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/15 10:53:12 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	check_if_dead(t_philo *philos)
 	i = 0;
 	while (i < philos[0].num_of_philos)
 	{
-		// pthread_mutex_lock(&program->philos[i].lock);
-		// if (philosopher_dead(&program->philos[i], program->time_to_die))
-		// {
-		// 	program->dead = 1;
-		// 	pthread_mutex_unlock(&program->philos[i].lock);
-		// 	print_message("died", &program->philos[i], program->philos[i].id);
-		// 	return (1);
-		// }
-		// pthread_mutex_unlock(&program->philos[i].lock);
+		// pthread_mutex_lock(philos[i].lock);
+		if (philosopher_dead(&philos[i], philos[i].time_to_die))
+		{
+			*philos[0].dead = 1;
+			print_message("died", &philos[i], philos[i].id);
+			// pthread_mutex_unlock(philos[i].lock);
+			return (1);
+		}
+		// pthread_mutex_unlock(philos[i].lock);
 		i++;
 	}
 	return (0);
@@ -62,10 +62,10 @@ int	check_if_all_ate(t_philo *philos)
 		return (0);
 	while (i < philos[0].num_of_philos)
 	{
-		pthread_mutex_lock(philos[i].lock);
+		// pthread_mutex_lock(philos[i].lock);
 		if (philos[i].meals_eaten >= philos[i].num_times_to_eat)
 			finished_eating++;
-		pthread_mutex_unlock(philos[i].lock);
+		// pthread_mutex_unlock(philos[i].lock);
 		i++;
 	}
 	if (finished_eating == philos[0].num_of_philos)
@@ -82,7 +82,7 @@ void	*monitor(void *pointer)
 
 	philos = (t_philo *)pointer;
 	while (1)
-		if (check_if_dead(philos) == 1 || check_if_all_ate(philos) == 1)
+		if (check_if_all_ate(philos) == 1 || check_if_dead(philos) == 1)
 			break ;
 	return (pointer);
 }
