@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:23:28 by druina            #+#    #+#             */
-/*   Updated: 2023/08/14 10:00:44 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/15 15:21:07 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	check_valid_args(char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_program program;
-	t_philo philos[PHILO_MAX];
-	pthread_mutex_t forks[PHILO_MAX];
+	t_program		program;
+	t_philo			philos[PHILO_MAX];
+	pthread_mutex_t	forks[PHILO_MAX];
 
 	if (argc != 5 && argc != 6)
 		return (write(2, "Wrong argument count\n", 22), 1);
@@ -57,6 +57,6 @@ int	main(int argc, char **argv)
 	init_forks(forks, program.num_of_philos);
 	init_philos(philos, &program, forks);
 	thread_create(&program, forks);
-  destory_all(NULL, &program, forks);
+	destory_all(NULL, &program, forks);
 	return (0);
 }

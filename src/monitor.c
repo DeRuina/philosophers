@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:22:47 by druina            #+#    #+#             */
-/*   Updated: 2023/08/15 11:30:51 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/15 15:31:56 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	print_message(char *str, t_philo *philo, int id)
 
 	pthread_mutex_lock(philo->write);
 	time = get_current_time() - philo->start_time;
-	printf("%zu %d %s\n", time, id, str);
+	if (*philo->dead == 0)
+		printf("%zu %d %s\n", time, id, str);
 	pthread_mutex_unlock(philo->write);
 }
 
@@ -40,8 +41,8 @@ int	check_if_dead(t_philo *philos)
 		// pthread_mutex_lock(philos[i].lock);
 		if (philosopher_dead(&philos[i], philos[i].time_to_die))
 		{
-			*philos[0].dead = 1;
 			print_message("died", &philos[i], philos[i].id);
+			*philos->dead = 1;
 			// pthread_mutex_unlock(philos[i].lock);
 			return (1);
 		}
@@ -70,7 +71,7 @@ int	check_if_all_ate(t_philo *philos)
 	}
 	if (finished_eating == philos[0].num_of_philos)
 	{
-		*philos[0].dead = 1;
+		*philos->dead = 1;
 		return (1);
 	}
 	return (0);
@@ -82,7 +83,7 @@ void	*monitor(void *pointer)
 
 	philos = (t_philo *)pointer;
 	while (1)
-		if (check_if_all_ate(philos) == 1 || check_if_dead(philos) == 1)
+		if (check_if_dead(philos) == 1 || check_if_all_ate(philos) == 1)
 			break ;
 	return (pointer);
 }

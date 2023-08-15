@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:05:40 by druina            #+#    #+#             */
-/*   Updated: 2023/08/15 09:25:18 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/15 15:32:19 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks)
 		philos[i].num_times_to_eat = program->num_times_to_eat;
 		philos[i].last_meal = get_current_time();
 		philos[i].start_time = program->start_time;
-    philos[i].write = &program->write;
-    philos[i].dead = &program->dead;
+		philos[i].write = &program->write;
+		philos[i].dead = &program->dead_flag;
 		philos[i].lock = &program->lock;
 		philos[i].l_fork = &forks[i];
 		if (i == 0)
@@ -60,12 +60,12 @@ void	init_program(t_program *program, t_philo *philos, char **argv)
 	program->time_to_die = ft_atoi(argv[2]);
 	program->time_to_eat = ft_atoi(argv[3]);
 	program->time_to_sleep = ft_atoi(argv[4]);
+	program->dead_flag = 0;
 	if (argv[5])
 		program->num_times_to_eat = ft_atoi(argv[5]);
 	else
 		program->num_times_to_eat = -1;
-  program->dead = 0;
-  program->philos = philos;
+	program->philos = philos;
 	pthread_mutex_init(&program->lock, NULL);
 	pthread_mutex_init(&program->write, NULL);
 }
