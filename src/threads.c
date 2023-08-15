@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:01:57 by druina            #+#    #+#             */
-/*   Updated: 2023/08/15 10:49:48 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/15 11:35:20 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	*philo_routine(void *pointer)
 	t_philo *philo;
 
 	philo = (t_philo *)pointer;
+	if (philo->id % 2 == 0)
+		ft_usleep(10);
 	while (*philo->dead == 0)
   {
     eat(philo);
