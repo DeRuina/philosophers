@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:01:57 by druina            #+#    #+#             */
-/*   Updated: 2023/08/15 15:37:18 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/15 15:49:01 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ void	eat(t_philo *philo)
 	// 	return ;
 	pthread_mutex_lock(philo->r_fork);
 	print_message("has taken a fork", philo, philo->id);
+	if (philo->num_of_philos == 1)
+	{
+		ft_usleep(philo->time_to_die);
+		pthread_mutex_unlock(philo->r_fork);
+		return ;
+	}
 	pthread_mutex_lock(philo->l_fork);
 	print_message("has taken a fork", philo, philo->id);
 	//   pthread_mutex_lock(philo->lock);
