@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:22:47 by druina            #+#    #+#             */
-/*   Updated: 2023/08/14 22:45:17 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/15 10:26:01 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	philosopher_dead(t_philo *philo, size_t time_to_die)
 	return (0);
 }
 
-int	check_if_dead(t_program *program)
+int	check_if_dead(t_philo *philos)
 {
 	int	i;
 
 	i = 0;
-	while (i < program->num_of_philos)
+	while (i < philos[0].num_of_philos)
 	{
 		// pthread_mutex_lock(&program->philos[i].lock);
 		// if (philosopher_dead(&program->philos[i], program->time_to_die))
@@ -51,26 +51,26 @@ int	check_if_dead(t_program *program)
 	return (0);
 }
 
-int	check_if_all_ate(t_program *program)
+int	check_if_all_ate(t_philo *philos)
 {
 	int	i;
 	int finished_eating;
 
 	i = 0;
 	finished_eating = 0;
-	if (program->num_times_to_eat == -1)
+	if (philos[0].num_times_to_eat == -1)
 		return (0);
-	while (i < program->num_of_philos)
+	while (i < philos[0].num_of_philos)
 	{
-		pthread_mutex_lock(&program->lock);
-		if (program->philos[i].meals_eaten >= program->num_times_to_eat)
+		pthread_mutex_lock(philos[i].lock);
+		if (philos[i].meals_eaten >= philos[i].num_times_to_eat)
 			finished_eating++;
-		pthread_mutex_unlock(&program->lock);
+		pthread_mutex_unlock(philos[i].lock);
 		i++;
 	}
-	if (finished_eating == program->num_of_philos)
+	if (finished_eating == philos[0].num_of_philos)
 	{
-		program->dead = 1;
+		*philos[0].dead = 1;
 		return (1);
 	}
 	return (0);
@@ -78,11 +78,11 @@ int	check_if_all_ate(t_program *program)
 
 void	*monitor(void *pointer)
 {
-	t_program *program;
+	t_philo *philos;
 
-	program = (t_program *)pointer;
+	philos = (t_philo *)pointer;
 	while (1)
-		if (check_if_dead(program) == 1 || check_if_all_ate(program) == 1)
+		if (check_if_dead(philos) == 1 || check_if_all_ate(philos) == 1)
 			break ;
 	return (pointer);
 }

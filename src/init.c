@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:05:40 by druina            #+#    #+#             */
-/*   Updated: 2023/08/14 10:52:43 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/15 09:25:18 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks)
 		philos[i].time_to_die = program->time_to_die;
 		philos[i].time_to_eat = program->time_to_eat;
 		philos[i].time_to_sleep = program->time_to_sleep;
+		philos[i].num_of_philos = program->num_of_philos;
+		philos[i].num_times_to_eat = program->num_times_to_eat;
 		philos[i].last_meal = get_current_time();
 		philos[i].start_time = program->start_time;
     philos[i].write = &program->write;

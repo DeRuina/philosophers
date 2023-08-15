@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:01:57 by druina            #+#    #+#             */
-/*   Updated: 2023/08/14 10:53:12 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/15 10:23:17 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	thread_create(t_program *program, pthread_mutex_t *forks)
 	pthread_t	observer;
 	int			i;
 
-	if (pthread_create(&observer, NULL, &monitor, &program) != 0)
+	if (pthread_create(&observer, NULL, &monitor, program->philos) != 0)
 		destory_all("Thread creation error", program, forks);
 	i = 0;
 	while (i < program->num_of_philos)

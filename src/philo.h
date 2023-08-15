@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2023/08/14 10:51:28 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/15 10:15:08 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_philo
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			start_time;
+	int				num_of_philos;
+	int				num_times_to_eat;
 	int				*dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
@@ -70,8 +72,8 @@ void				destory_all(char *str, t_program *program,
 int					philosopher_dead(t_philo *philo, size_t time_to_die);
 int					thread_create(t_program *program, pthread_mutex_t *forks);
 void				print_message(char *str, t_philo *philo, int id);
-int					check_if_dead(t_program *program);
-int					check_if_all_ate(t_program *program);
+int					check_if_dead(t_philo *philos);
+int					check_if_all_ate(t_philo *philos);
 void				eat(t_philo *philo);
 void				dream(t_philo *philo);
 void				think(t_philo *philo);
