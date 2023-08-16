@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:01:57 by druina            #+#    #+#             */
-/*   Updated: 2023/08/15 15:49:01 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 09:14:49 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,17 @@
 
 void	think(t_philo *philo)
 {
-	// if (philosopher_dead(philo, philo->time_to_die) == 1)
-	// 	return ;
 	print_message("is thinking", philo, philo->id);
 }
 
 void	dream(t_philo *philo)
 {
-	// if (philosopher_dead(philo, philo->time_to_die) == 1)
-	// 	return ;
 	print_message("is sleeping", philo, philo->id);
 	ft_usleep(philo->time_to_sleep);
 }
 
 void	eat(t_philo *philo)
 {
-	// if (philosopher_dead(philo, philo->time_to_die) == 1)
-	// 	return ;
 	pthread_mutex_lock(philo->r_fork);
 	print_message("has taken a fork", philo, philo->id);
 	if (philo->num_of_philos == 1)
@@ -41,14 +35,12 @@ void	eat(t_philo *philo)
 	}
 	pthread_mutex_lock(philo->l_fork);
 	print_message("has taken a fork", philo, philo->id);
-	//   pthread_mutex_lock(philo->lock);
 	philo->eating = 1;
 	philo->last_meal = get_current_time();
 	print_message("is eating", philo, philo->id);
 	philo->meals_eaten++;
 	ft_usleep(philo->time_to_eat);
 	philo->eating = 0;
-	//   pthread_mutex_unlock(philo->lock);
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
 }
@@ -59,11 +51,9 @@ void	*philo_routine(void *pointer)
 
 	philo = (t_philo *)pointer;
 	if (philo->id % 2 == 0)
-		ft_usleep(10);
+		ft_usleep(1);
 	while (*philo->dead == 0)
 	{
-		// if (philosopher_dead(philo, philo->time_to_die) == 1)
-		// 	return (pointer);
 		eat(philo);
 		dream(philo);
 		think(philo);
