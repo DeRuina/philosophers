@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:22:47 by druina            #+#    #+#             */
-/*   Updated: 2023/08/15 15:31:56 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 09:17:06 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,12 @@ int	check_if_dead(t_philo *philos)
 	i = 0;
 	while (i < philos[0].num_of_philos)
 	{
-		// pthread_mutex_lock(philos[i].lock);
 		if (philosopher_dead(&philos[i], philos[i].time_to_die))
 		{
 			print_message("died", &philos[i], philos[i].id);
 			*philos->dead = 1;
-			// pthread_mutex_unlock(philos[i].lock);
 			return (1);
 		}
-		// pthread_mutex_unlock(philos[i].lock);
 		i++;
 	}
 	return (0);
@@ -55,7 +52,7 @@ int	check_if_dead(t_philo *philos)
 int	check_if_all_ate(t_philo *philos)
 {
 	int	i;
-	int finished_eating;
+	int	finished_eating;
 
 	i = 0;
 	finished_eating = 0;
@@ -63,10 +60,8 @@ int	check_if_all_ate(t_philo *philos)
 		return (0);
 	while (i < philos[0].num_of_philos)
 	{
-		// pthread_mutex_lock(philos[i].lock);
 		if (philos[i].meals_eaten >= philos[i].num_times_to_eat)
 			finished_eating++;
-		// pthread_mutex_unlock(philos[i].lock);
 		i++;
 	}
 	if (finished_eating == philos[0].num_of_philos)
@@ -79,7 +74,7 @@ int	check_if_all_ate(t_philo *philos)
 
 void	*monitor(void *pointer)
 {
-	t_philo *philos;
+	t_philo	*philos;
 
 	philos = (t_philo *)pointer;
 	while (1)

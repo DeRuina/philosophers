@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2023/08/15 15:27:01 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 09:17:10 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_program
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
-	int 			dead_flag;
+	int				dead_flag;
 	int				num_times_to_eat;
 	pthread_mutex_t	write;
 	pthread_mutex_t	lock;

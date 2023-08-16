@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.str[i]                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   str[i]reated: 2023/08/08 15:09:41 by druina            #+#    #+#             */
-/*   Updated: 2023/08/08 15:14:50 by druina           ###   ########.fr       */
+/*   Created: 2023/08/16 09:17:55 by druina            #+#    #+#             */
+/*   Updated: 2023/08/16 09:17:59 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	destory_all(char *str, t_program *program, pthread_mutex_t *forks)
 	pthread_mutex_destroy(&program->write);
 	while (i < program->num_of_philos)
 	{
-		// pthread_mutex_destroy(&program->philos[i].lock);
 		pthread_mutex_destroy(&forks[i]);
 		i++;
 	}
