@@ -6,7 +6,7 @@
 #    By: druina <druina@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 14:19:21 by druina            #+#    #+#              #
-#    Updated: 2023/08/16 08:54:48 by druina           ###   ########.fr        #
+#    Updated: 2023/08/16 16:06:29 by druina           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FLAGS = -Wall -Wextra -Werror -O3 -pthread
 
 HEADER = ./src/philo.h
 
-# SANITIZER = -fsanitize=address
+# SANITIZER = -fsanitize=thread
 
 .PHONY: all clean fclean re
 

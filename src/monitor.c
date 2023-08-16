@@ -6,11 +6,13 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 22:22:47 by druina            #+#    #+#             */
-/*   Updated: 2023/08/16 09:17:06 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 16:06:03 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// Print message funtion
 
 void	print_message(char *str, t_philo *philo, int id)
 {
@@ -23,6 +25,8 @@ void	print_message(char *str, t_philo *philo, int id)
 	pthread_mutex_unlock(philo->write);
 }
 
+// Checks if the philosopher is dead
+
 int	philosopher_dead(t_philo *philo, size_t time_to_die)
 {
 	if (get_current_time() - philo->last_meal >= time_to_die
@@ -30,6 +34,8 @@ int	philosopher_dead(t_philo *philo, size_t time_to_die)
 		return (1);
 	return (0);
 }
+
+// Check if any philo died
 
 int	check_if_dead(t_philo *philos)
 {
@@ -41,13 +47,17 @@ int	check_if_dead(t_philo *philos)
 		if (philosopher_dead(&philos[i], philos[i].time_to_die))
 		{
 			print_message("died", &philos[i], philos[i].id);
+			// pthread_mutex_lock(philos[0].dead_lock);
 			*philos->dead = 1;
+			// pthread_mutex_unlock(philos[0].dead_lock);
 			return (1);
 		}
 		i++;
 	}
 	return (0);
 }
+
+// Checks if all the philos ate the num_of_meals
 
 int	check_if_all_ate(t_philo *philos)
 {
@@ -66,11 +76,15 @@ int	check_if_all_ate(t_philo *philos)
 	}
 	if (finished_eating == philos[0].num_of_philos)
 	{
+		// pthread_mutex_lock(philos[0].dead_lock);
 		*philos->dead = 1;
+		// pthread_mutex_unlock(philos[0].dead_lock);
 		return (1);
 	}
 	return (0);
 }
+
+// Monitor thread routine
 
 void	*monitor(void *pointer)
 {

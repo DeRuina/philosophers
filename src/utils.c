@@ -6,11 +6,13 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 09:17:55 by druina            #+#    #+#             */
-/*   Updated: 2023/08/16 10:05:27 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 14:15:24 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// Checks the len of the string
 
 int	ft_strlen(char *str)
 {
@@ -23,6 +25,7 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
+// Own version of atoi
 
 int	ft_atoi(char *str)
 {
@@ -47,6 +50,7 @@ int	ft_atoi(char *str)
 	}
 	return (sign * nb);
 }
+// Destroys all the mutexes
 
 void	destory_all(char *str, t_program *program, pthread_mutex_t *forks)
 {
@@ -66,15 +70,19 @@ void	destory_all(char *str, t_program *program, pthread_mutex_t *forks)
 	}
 }
 
-int	ft_usleep(size_t microseconds)
+// Improved version of sleep function
+
+int	ft_usleep(size_t milliseconds)
 {
 	size_t	start;
 
 	start = get_current_time();
-	while ((get_current_time() - start) < microseconds)
+	while ((get_current_time() - start) < milliseconds)
 		usleep(500);
 	return (0);
 }
+
+// Gets the current time in milliseconds
 
 size_t	get_current_time(void)
 {

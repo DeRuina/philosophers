@@ -6,11 +6,13 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:23:28 by druina            #+#    #+#             */
-/*   Updated: 2023/08/16 10:02:06 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 15:15:52 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// Checks that the input is only numbers
 
 int	check_arg_content(char *arg)
 {
@@ -25,6 +27,8 @@ int	check_arg_content(char *arg)
 	}
 	return (0);
 }
+
+// Checks if the program input is correct
 
 int	check_valid_args(char **argv)
 {
@@ -42,6 +46,7 @@ int	check_valid_args(char **argv)
 				51), 1);
 	return (0);
 }
+// Main function
 
 int	main(int argc, char **argv)
 {
@@ -54,7 +59,7 @@ int	main(int argc, char **argv)
 	if (check_valid_args(argv) == 1)
 		return (1);
 	init_program(&program, philos);
-	init_forks(forks, program.philos[0].num_of_philos);
+	init_forks(forks, ft_atoi(argv[1]));
 	init_philos(philos, &program, forks, argv);
 	thread_create(&program, forks);
 	destory_all(NULL, &program, forks);

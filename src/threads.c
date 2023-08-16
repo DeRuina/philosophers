@@ -6,22 +6,28 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 14:01:57 by druina            #+#    #+#             */
-/*   Updated: 2023/08/16 10:04:55 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 15:30:10 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// Think routine funtion
 
 void	think(t_philo *philo)
 {
 	print_message("is thinking", philo, philo->id);
 }
 
+// Dream routine funtion
+
 void	dream(t_philo *philo)
 {
 	print_message("is sleeping", philo, philo->id);
 	ft_usleep(philo->time_to_sleep);
 }
+
+// Eat routine funtion
 
 void	eat(t_philo *philo)
 {
@@ -45,6 +51,8 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(philo->r_fork);
 }
 
+// Thread routine
+
 void	*philo_routine(void *pointer)
 {
 	t_philo	*philo;
@@ -60,6 +68,8 @@ void	*philo_routine(void *pointer)
 	}
 	return (pointer);
 }
+
+// Creates all the threads
 
 int	thread_create(t_program *program, pthread_mutex_t *forks)
 {
