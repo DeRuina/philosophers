@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:05:40 by druina            #+#    #+#             */
-/*   Updated: 2023/08/16 09:16:37 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 09:21:03 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks)
 		philos[i].start_time = program->start_time;
 		philos[i].write = &program->write;
 		philos[i].dead = &program->dead_flag;
-		philos[i].lock = &program->lock;
 		philos[i].l_fork = &forks[i];
 		if (i == 0)
 			philos[i].r_fork = &forks[program->num_of_philos - 1];
@@ -66,6 +65,5 @@ void	init_program(t_program *program, t_philo *philos, char **argv)
 	else
 		program->num_times_to_eat = -1;
 	program->philos = philos;
-	pthread_mutex_init(&program->lock, NULL);
 	pthread_mutex_init(&program->write, NULL);
 }

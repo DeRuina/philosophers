@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2023/08/16 09:17:10 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 09:20:49 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_philo
 	int				*dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*lock;
 	pthread_mutex_t	*write;
 }					t_philo;
 
@@ -50,7 +49,6 @@ typedef struct s_program
 	int				dead_flag;
 	int				num_times_to_eat;
 	pthread_mutex_t	write;
-	pthread_mutex_t	lock;
 	t_philo			*philos;
 }					t_program;
 
