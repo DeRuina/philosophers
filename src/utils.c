@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 09:17:55 by druina            #+#    #+#             */
-/*   Updated: 2023/08/16 09:21:20 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 10:05:27 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	destory_all(char *str, t_program *program, pthread_mutex_t *forks)
 		write(2, "\n", 1);
 	}
 	pthread_mutex_destroy(&program->write);
-	while (i < program->num_of_philos)
+	while (i < program->philos[0].num_of_philos)
 	{
 		pthread_mutex_destroy(&forks[i]);
 		i++;
