@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2023/08/16 15:27:40 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/16 16:30:47 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,16 @@ typedef struct s_philo
 	int				*dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*write;
+	pthread_mutex_t	*write_lock;
 	pthread_mutex_t	*dead_lock;
+	pthread_mutex_t	*meal_lock;
 }					t_philo;
 typedef struct s_program
 {
 	int				dead_flag;
 	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	write;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	write_lock;
 	t_philo			*philos;
 }					t_program;
 
@@ -70,6 +72,7 @@ void				dream(t_philo *philo);
 void				think(t_philo *philo);
 
 // Monitor utils
+int					dead_loop(t_philo *philo);
 int					check_if_all_ate(t_philo *philos);
 int					check_if_dead(t_philo *philos);
 int					philosopher_dead(t_philo *philo, size_t time_to_die);
