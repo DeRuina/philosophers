@@ -6,7 +6,7 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:20:06 by druina            #+#    #+#             */
-/*   Updated: 2023/08/16 16:30:47 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/17 08:59:39 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void				init_program(t_program *program, t_philo *philos);
 void				init_forks(pthread_mutex_t *forks, int philo_num);
 void				init_philos(t_philo *philos, t_program *program,
 						pthread_mutex_t *forks, char **argv);
+void				init_input(t_philo *philo, char **argv);
 
 // Threads
 int					thread_create(t_program *program, pthread_mutex_t *forks);

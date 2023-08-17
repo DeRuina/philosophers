@@ -6,11 +6,25 @@
 /*   By: druina <druina@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:05:40 by druina            #+#    #+#             */
-/*   Updated: 2023/08/16 17:17:39 by druina           ###   ########.fr       */
+/*   Updated: 2023/08/17 08:59:27 by druina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// Initializing the input from user
+
+void	init_input(t_philo *philo, char **argv)
+{
+	philo->time_to_die = ft_atoi(argv[2]);
+	philo->time_to_eat = ft_atoi(argv[3]);
+	philo->time_to_sleep = ft_atoi(argv[4]);
+	philo->num_of_philos = ft_atoi(argv[1]);
+	if (argv[5])
+		philo->num_times_to_eat = ft_atoi(argv[5]);
+	else
+		philo->num_times_to_eat = -1;
+}
 
 // Initializing the philosophers
 
@@ -25,13 +39,7 @@ void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks,
 		philos[i].id = i + 1;
 		philos[i].eating = 0;
 		philos[i].meals_eaten = 0;
-		philos[i].time_to_die = ft_atoi(argv[2]);
-		philos[i].time_to_eat = ft_atoi(argv[3]);
-		philos[i].time_to_sleep = ft_atoi(argv[4]);
-		philos[i].num_of_philos = ft_atoi(argv[1]);
-		philos[i].num_times_to_eat = -1;
-		if (argv[5])
-			philos[i].num_times_to_eat = ft_atoi(argv[5]);
+		init_input(&philos[i], argv);
 		philos[i].start_time = get_current_time();
 		philos[i].last_meal = get_current_time();
 		philos[i].write_lock = &program->write_lock;
