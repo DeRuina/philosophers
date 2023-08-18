@@ -6,7 +6,7 @@
 #    By: druina <druina@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 14:19:21 by druina            #+#    #+#              #
-#    Updated: 2023/08/17 10:56:28 by druina           ###   ########.fr        #
+#    Updated: 2023/08/18 15:17:39 by druina           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,4 +40,5 @@ re: fclean all
 debug: FLAGS += -g
 debug: re
 
-delay: python3 delay_o_meter.py
+delay:
+	python3 delay_o_meter.py
