@@ -1,7 +1,7 @@
 
 # Philosophers 42 Explained / Walkthrough
 #### The famous "Dining Philosophers Problem" walkthrough - 42 cursus project
-![The dining philosopers problem](img/os-dining-philosophers-problem.gif)
+
 
 ## The Dining Philosophers Problem
 [The dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem) is a famous problem in computer science used to illustrate common issues in [concurrent programming](https://en.wikipedia.org/wiki/Concurrency_(computer_science)). The problem was originally formulated in 1965 by [Edsger Dijkstra](https://en.wikipedia.org/wiki/Edsger_W._Dijkstra), and is stated as follows:
@@ -20,7 +20,7 @@
        and, of course, while sleeping, they are not eating nor thinking.
 Let me start by explaining the general idea . First of all we have to immagine a round table, X num of philosophers sits around it and each of them brings a fork and places it infront of them. At this point we know that a philosopher can do three things: eat, sleep or think, but in order to eat he has to pick two forks (the one infront of him and another one or to his right or to his left, in my solution he picks the one to his right, both work - different implentation). Let's use a picture to have a more concrete idea of what we are talking about:
 
-![The dining philosopers problem](img/An_illustration_of_the_dining_philosophers_problem.png)
+![The dining philosopers problem](img/os-dining-philosophers-problem.gif)
 
 Let's say there are 5 philosophers sitting on the table. Philosopher 1 wants to eat, so he picks the fork infront of him and the one to his right (the one infront of philosopher 5), at this point we notice that philosopher 2 can't eat nor does philospher 5, since philosopher 1 picked the fork infront of him and infront of philisopher 5. this might seem a little obvious but keep in mind this situation because the main problem of this project is how to organize the eating action of the philosophers.
 Probably the first solution that came to your mind is to simply make the odd and even philos eat separately, well we are not going to do that, it's too hard coded and we would loose the meaning of the project, philos have to organize by themselves. We will be using [threads](https://en.wikipedia.org/wiki/Thread_(computing)) and implement a [mutithreading solution](https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)).
