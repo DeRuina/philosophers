@@ -366,18 +366,19 @@ size_t	get_current_time(void)
 
 ```bash
 # Clone this project
-$ git clone https://github.com/Stte/minishell
+$ git clone https://github.com/DeRuina/philosophers.git
 
 # Access
-$ cd minishell
+$ cd philosophers
 
 # Compile the program
 $ make
 
 # Run the project
-$ ./minishell
+$ ./philo
 
 ```
+** don't forget to insert the arguments
 
 ## Author
 
