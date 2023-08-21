@@ -41,6 +41,7 @@ Data races are a common problem in multithreaded programming. Data races occur w
 * two or more threads concurrently accessing a location of memory
 * one of them is a write
 * one of them is unsynchronized
+  
 In simpler words a race condtion can happen when 2 or more threads are trying to access and modify the same variable at the same time, it can lead to an error in the final value of the variable, it doesn't mean it will for sure happen though. For an example let's think of a function that deposits the amount you insert to your bank account, If we use multithreading and use 2 threads and want to deposit 300 using the first thread and 200 using the second you will think our bank acount will have a total of 500, but that's not praticulary the case, let's see it in code:
 ``` c
 #include <unistd.h>
